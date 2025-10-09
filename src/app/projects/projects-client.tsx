@@ -22,7 +22,7 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
   const projectTypes = useMemo(() => {
     const types = projects.flatMap(project => 
       Array.isArray(project.project_type) ? project.project_type : [project.project_type]
-    )
+    ).filter((type): type is string => typeof type === 'string')
     return Array.from(new Set(types))
   }, [projects])
 
