@@ -20,7 +20,9 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
 
   // Obtenir tous les types de projets uniques
   const projectTypes = useMemo(() => {
-    const types = projects.map(project => project.project_type)
+    const types = projects.flatMap(project => 
+      Array.isArray(project.project_type) ? project.project_type : [project.project_type]
+    ).filter((type): type is string => typeof type === 'string')
     return Array.from(new Set(types))
   }, [projects])
 
@@ -31,7 +33,10 @@ export default function ProjectsClient({ projects }: ProjectsClientProps) {
                            project.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
                            (project.annonceur && project.annonceur.toLowerCase().includes(searchTerm.toLowerCase()))
       
-      const matchesType = selectedType === "all" || project.project_type === selectedType
+      const matchesType = selectedType === "all" || 
+        (Array.isArray(project.project_type) 
+          ? project.project_type.includes(selectedType)
+          : project.project_type === selectedType)
 
       return matchesSearch && matchesType
     })

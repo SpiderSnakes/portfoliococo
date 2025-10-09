@@ -71,7 +71,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const nextProject = currentIndex < allProjects.length - 1 ? allProjects[currentIndex + 1] : null
 
   // Obtenir le thème et l'image de fond du projet
-  const theme = getProjectTheme(decodedSlug, project.project_type, project.annonceur)
+  const projectType = Array.isArray(project.project_type) ? project.project_type : [project.project_type]
+  const theme = getProjectTheme(decodedSlug, projectType, project.annonceur)
   const backgroundImage = getProjectBackground(decodedSlug, project.featured_image)
   
   return (

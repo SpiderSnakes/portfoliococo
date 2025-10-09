@@ -233,7 +233,7 @@ export default function AboutClient({ pageData }: AboutClientProps) {
     
     // Traitement spécial pour "Mon processus créatif"
     if (section.title.toLowerCase().includes('processus créatif')) {
-      const steps = []
+      const steps: { num: number; title: string; desc: string }[] = []
       const stepLines = section.content.split('\n').filter(line => line.trim().match(/^\d+\./))
       
       stepLines.forEach(line => {
