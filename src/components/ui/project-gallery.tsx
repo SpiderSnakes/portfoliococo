@@ -88,9 +88,9 @@ export function ProjectGallery({
     <div className={cn("mb-8", className)}>
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <h2 className="text-2xl font-bold">{title}</h2>
+          <h2 className="text-2xl font-bold text-white">{title}</h2>
           {isLoading && (
-            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2 text-sm text-gray-300">
               <Loader2 className="h-4 w-4 animate-spin" />
               <span>Optimisation des dimensions...</span>
             </div>

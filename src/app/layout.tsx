@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import "../styles/footer-cyberpunk.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 
@@ -11,25 +12,30 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Portfolio - Graphiste Freelance",
-    template: "%s | Portfolio"
+    default: "Corentin Basson - Portfolio Créatif",
+    template: "%s | Corentin Basson"
   },
-  description: "Portfolio de graphiste freelance. Découvrez mes créations en design graphique, identité visuelle, web design et plus encore.",
-  keywords: ["graphiste", "freelance", "design", "identité visuelle", "web design", "portfolio"],
-  authors: [{ name: "Portfolio" }],
-  creator: "Portfolio",
+  description: "Corentin Basson - Portfolio créatif et artistique. Découvrez mes créations en design graphique, identité visuelle, photographie et plus encore.",
+  keywords: ["CBSN", "PICS", "portfolio", "créatif", "design", "photographie", "identité visuelle", "art"],
+  authors: [{ name: "Corentin Basson" }],
+  creator: "Corentin Basson",
+  icons: {
+    icon: "/Logo%20CBSN%20v3.png",
+    shortcut: "/Logo%20CBSN%20v3.png",
+    apple: "/Logo%20CBSN%20v3.png"
+  },
   openGraph: {
     type: "website",
     locale: "fr_FR",
-    url: "https://portfolio.com",
-    title: "Portfolio - Graphiste Freelance",
-    description: "Découvrez mes créations en design graphique, identité visuelle, web design et plus encore.",
-    siteName: "Portfolio",
+    url: "https://cbsn-pics.com",
+    title: "Corentin Basson - Portfolio Créatif",
+    description: "Découvrez mes créations en design graphique, identité visuelle, photographie et plus encore.",
+    siteName: "Corentin Basson",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Portfolio - Graphiste Freelance",
-    description: "Découvrez mes créations en design graphique, identité visuelle, web design et plus encore.",
+    title: "Corentin Basson - Portfolio Créatif",
+    description: "Découvrez mes créations en design graphique, identité visuelle, photographie et plus encore.",
   },
   robots: {
     index: true,

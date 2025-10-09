@@ -65,12 +65,12 @@ function YouTubeEmbed({ videoId, title }: { videoId: string; title: string }) {
 
   if (hasError) {
     return (
-      <div className="aspect-video rounded-lg overflow-hidden bg-muted border-2 border-dashed border-muted-foreground/20">
+      <div className="aspect-video rounded-lg overflow-hidden bg-gray-800/50 border-2 border-dashed border-gray-600/20">
         <div className="w-full h-full flex items-center justify-center">
           <div className="text-center space-y-2">
-            <PlayCircle className="h-12 w-12 text-muted-foreground mx-auto" />
-            <p className="text-sm text-muted-foreground">Vidéo non disponible</p>
-            <p className="text-xs text-muted-foreground">ID: {videoId}</p>
+            <PlayCircle className="h-12 w-12 text-gray-400 mx-auto" />
+            <p className="text-sm text-gray-300">Vidéo non disponible</p>
+            <p className="text-xs text-gray-400">ID: {videoId}</p>
           </div>
         </div>
       </div>
@@ -78,7 +78,7 @@ function YouTubeEmbed({ videoId, title }: { videoId: string; title: string }) {
   }
 
   return (
-    <div ref={containerRef} className="aspect-video rounded-lg overflow-hidden bg-muted">
+    <div ref={containerRef} className="aspect-video rounded-lg overflow-hidden bg-gray-800/50">
       {isLoaded ? (
         <iframe
           width="100%"
@@ -93,10 +93,10 @@ function YouTubeEmbed({ videoId, title }: { videoId: string; title: string }) {
           onError={() => setHasError(true)}
         />
       ) : (
-        <div className="w-full h-full flex items-center justify-center bg-muted">
+        <div className="w-full h-full flex items-center justify-center bg-gray-800/50">
           <div className="text-center space-y-2">
-            <PlayCircle className="h-12 w-12 text-muted-foreground mx-auto animate-pulse" />
-            <p className="text-sm text-muted-foreground">Chargement de la vidéo...</p>
+            <PlayCircle className="h-12 w-12 text-gray-400 mx-auto animate-pulse" />
+            <p className="text-sm text-gray-300">Chargement de la vidéo...</p>
           </div>
         </div>
       )}
@@ -122,19 +122,19 @@ export function ProjectEvidenceItem({ evidence, className, compact = false }: Pr
   const getTypeColor = () => {
     switch (evidence.type) {
       case 'Image':
-        return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
+        return 'bg-cyan-400/10 text-cyan-300 border border-cyan-400/30'
       case 'PDF':
-        return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300'
+        return 'bg-pink-400/10 text-pink-300 border border-pink-400/30'
       case 'URL':
-        return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300'
+        return 'bg-purple-400/10 text-purple-300 border border-purple-400/30'
       case 'Video':
-        return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300'
+        return 'bg-purple-400/10 text-purple-300 border border-purple-400/30'
     }
   }
 
   if (compact) {
     return (
-      <Card className={cn("w-full", className)}>
+      <Card className={cn("w-full bg-black/30 border-gray-700/50 backdrop-blur-sm", className)}>
         <CardContent className="p-4">
           <div className="flex items-start gap-3">
             <Badge variant="secondary" className={getTypeColor()}>
@@ -144,7 +144,7 @@ export function ProjectEvidenceItem({ evidence, className, compact = false }: Pr
               </span>
             </Badge>
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium truncate">{evidence.description}</p>
+              <p className="text-sm font-medium truncate text-white">{evidence.description}</p>
               {evidence.type === 'URL' && evidence.url && (
                 <Button variant="link" size="sm" className="h-auto p-0 mt-1" asChild>
                   <a href={evidence.url} target="_blank" rel="noopener noreferrer">
@@ -167,10 +167,10 @@ export function ProjectEvidenceItem({ evidence, className, compact = false }: Pr
   }
 
   return (
-    <Card className={cn("w-full", className)}>
+    <Card className={cn("w-full bg-black/30 border-gray-700/50 backdrop-blur-sm", className)}>
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-base flex items-center gap-2">
+          <CardTitle className="text-base flex items-center gap-2 text-white">
             {getTypeIcon()}
             {evidence.description}
           </CardTitle>
@@ -200,9 +200,9 @@ export function ProjectEvidenceItem({ evidence, className, compact = false }: Pr
 
         {evidence.type === 'URL' && evidence.url && (
           <div className="space-y-3">
-            <div className="p-4 bg-muted rounded-lg">
-              <p className="text-sm text-muted-foreground mb-2">Lien externe :</p>
-              <p className="text-sm font-mono break-all">{evidence.url}</p>
+            <div className="p-4 bg-gray-800/50 rounded-lg">
+              <p className="text-sm text-gray-300 mb-2">Lien externe :</p>
+              <p className="text-sm font-mono break-all text-cyan-300">{evidence.url}</p>
             </div>
             <Button asChild className="w-full">
               <a href={evidence.url} target="_blank" rel="noopener noreferrer">
@@ -220,9 +220,9 @@ export function ProjectEvidenceItem({ evidence, className, compact = false }: Pr
               return videoId ? (
                 <YouTubeEmbed videoId={videoId} title={evidence.description} />
               ) : (
-                <div className="p-4 bg-muted rounded-lg">
-                  <p className="text-sm text-muted-foreground mb-2">URL YouTube :</p>
-                  <p className="text-sm font-mono break-all">{evidence.youtube_url}</p>
+                <div className="p-4 bg-gray-800/50 rounded-lg">
+                  <p className="text-sm text-gray-300 mb-2">URL YouTube :</p>
+                  <p className="text-sm font-mono break-all text-cyan-300">{evidence.youtube_url}</p>
                 </div>
               )
             })()}

@@ -31,21 +31,21 @@ function ObjectiveItem({ objectives, type, compact = false }: ObjectiveItemProps
           icon: <Brain className="h-4 w-4" />,
           label: 'Cognitifs',
           description: 'Connaissances et compétences intellectuelles',
-          color: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300'
+          color: 'bg-cyan-400/10 text-cyan-300 border border-cyan-400/30'
         }
       case 'affectifs':
         return {
           icon: <Heart className="h-4 w-4" />,
           label: 'Affectifs',
           description: 'Attitudes et émotions',
-          color: 'bg-pink-100 text-pink-800 dark:bg-pink-900 dark:text-pink-300'
+          color: 'bg-pink-400/10 text-pink-300 border border-pink-400/30'
         }
       case 'conatifs':
         return {
           icon: <Target className="h-4 w-4" />,
           label: 'Conatifs',
           description: 'Actions et comportements',
-          color: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300'
+          color: 'bg-purple-400/10 text-purple-300 border border-purple-400/30'
         }
     }
   }
@@ -62,15 +62,15 @@ function ObjectiveItem({ objectives, type, compact = false }: ObjectiveItemProps
               {typeInfo.label}
             </span>
           </Badge>
-          <span className="text-xs text-muted-foreground">
+          <span className="text-xs text-gray-300">
             {objectives.length} objectif{objectives.length > 1 ? 's' : ''}
           </span>
         </div>
         <ul className="text-sm space-y-1">
           {objectives.map((objective, index) => (
             <li key={index} className="flex items-start gap-2">
-              <CheckCircle className="h-3 w-3 mt-0.5 text-muted-foreground flex-shrink-0" />
-              <span>{objective}</span>
+              <CheckCircle className="h-3 w-3 mt-0.5 text-cyan-400 flex-shrink-0" />
+              <span className="text-gray-200">{objective}</span>
             </li>
           ))}
         </ul>
@@ -79,10 +79,10 @@ function ObjectiveItem({ objectives, type, compact = false }: ObjectiveItemProps
   }
 
   return (
-    <Card className="w-full">
+    <Card className="w-full bg-black/30 border-gray-700/50 backdrop-blur-sm">
       <CardHeader className="pb-3">
         <div className="flex items-center justify-between">
-          <CardTitle className="text-base flex items-center gap-2">
+          <CardTitle className="text-base flex items-center gap-2 text-white">
             {typeInfo.icon}
             {typeInfo.label}
           </CardTitle>
@@ -90,13 +90,13 @@ function ObjectiveItem({ objectives, type, compact = false }: ObjectiveItemProps
             {objectives.length}
           </Badge>
         </div>
-        <p className="text-sm text-muted-foreground">{typeInfo.description}</p>
+        <p className="text-sm text-gray-300">{typeInfo.description}</p>
       </CardHeader>
       <CardContent className="pt-0">
         <ul className="space-y-3">
           {objectives.map((objective, index) => (
-            <li key={index} className="flex items-start gap-3">
-              <CheckCircle className="h-4 w-4 mt-0.5 text-primary flex-shrink-0" />
+            <li key={index} className="flex items-start gap-3 text-gray-200">
+              <CheckCircle className="h-4 w-4 mt-0.5 text-cyan-400 flex-shrink-0" />
               <span className="text-sm">{objective}</span>
             </li>
           ))}
@@ -126,8 +126,8 @@ export function ProjectObjectives({
   return (
     <div className={cn("space-y-4", className)}>
       <div className="flex items-center justify-between">
-        <h3 className="text-lg font-semibold">{title}</h3>
-        <Badge variant="outline">
+        <h3 className="text-lg font-semibold text-white">{title}</h3>
+        <Badge variant="outline" className="border-cyan-400/30 text-cyan-300 bg-cyan-400/10">
           {totalObjectives} objectif{totalObjectives > 1 ? 's' : ''}
         </Badge>
       </div>
@@ -167,19 +167,19 @@ export function ProjectStrategy({
 
   return (
     <div className={cn("space-y-4", className)}>
-      <h3 className="text-lg font-semibold">Stratégie et ciblage</h3>
+      <h3 className="text-lg font-semibold text-white">Stratégie et ciblage</h3>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {cibles && (
-          <Card>
+          <Card className="bg-black/30 border-gray-700/50 backdrop-blur-sm">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base flex items-center gap-2">
-                <Target className="h-4 w-4" />
+              <CardTitle className="text-base flex items-center gap-2 text-white">
+                <Target className="h-4 w-4 text-cyan-400" />
                 Cibles
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-0">
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-sm text-gray-200 leading-relaxed">
                 {cibles}
               </p>
             </CardContent>
@@ -187,15 +187,15 @@ export function ProjectStrategy({
         )}
 
         {strategie_creative && (
-          <Card>
+          <Card className="bg-black/30 border-gray-700/50 backdrop-blur-sm">
             <CardHeader className="pb-3">
-              <CardTitle className="text-base flex items-center gap-2">
-                <Brain className="h-4 w-4" />
+              <CardTitle className="text-base flex items-center gap-2 text-white">
+                <Brain className="h-4 w-4 text-pink-400" />
                 Stratégie créative
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-0">
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-sm text-gray-200 leading-relaxed">
                 {strategie_creative}
               </p>
             </CardContent>

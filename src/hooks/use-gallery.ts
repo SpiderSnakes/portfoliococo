@@ -28,11 +28,16 @@ function loadImageDimensions(src: string): Promise<{ width: number; height: numb
 
 // Fonction pour détecter si c'est une URL Cloudinary
 function isCloudinaryUrl(url: string): boolean {
+  if (!url || typeof url !== 'string') return false
   return url.includes('cloudinary.com') || url.includes('res.cloudinary.com')
 }
 
 // Fonction pour estimer les dimensions basées sur des ratios communs
 function estimateDimensions(url: string, defaultWidth: number, defaultHeight: number): { width: number; height: number } {
+  if (!url || typeof url !== 'string') {
+    return { width: defaultWidth, height: defaultHeight }
+  }
+  
   // Pour les images Cloudinary, utiliser des ratios plus réalistes
   if (isCloudinaryUrl(url)) {
     // Utiliser un ratio 4:3 par défaut pour les photos

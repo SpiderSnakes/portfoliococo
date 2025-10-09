@@ -7,6 +7,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+
   // Configuration pour supporter les fichiers Markdown, les images et react-pdf
   webpack: (config: any) => {
     config.module.rules.push({

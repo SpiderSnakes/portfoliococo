@@ -20,8 +20,8 @@ media_library:
 media_folder: "public/uploads"
 public_folder: "/uploads"
 
-# Configuration locale pour le développement (désactivée pour utiliser GitHub OAuth)
-# local_backend: true
+# Configuration locale pour le développement
+local_backend: true
 
 # Collections de contenu
 collections:
@@ -128,7 +128,7 @@ collections:
       - { label: "Annonceur", name: "annonceur", widget: "string", required: false }
       - { label: "Contexte", name: "contexte", widget: "select", options: ["Alternance", "École", "Projet personnel", "Client", "Autre"] }
       - { label: "Précision contexte", name: "contexte_autre", widget: "string", required: false, condition: { field: "contexte", value: "Autre" }, hint: "Ce champ est obligatoire quand 'Autre' est sélectionné" }
-      - { label: "Type de projet", name: "project_type", widget: "select", options: ["Identité visuelle", "Site web", "Print", "Packaging", "Illustration", "Autre"] }
+      - { label: "Types de projet", name: "project_type", widget: "select", options: ["Identité visuelle", "Site web", "Print", "Packaging", "Illustration", "Autre"], multiple: true, min: 1, hint: "Sélectionnez un ou plusieurs types de projets" }
       - { label: "Technologies/Outils", name: "tools", widget: "list", field: { label: "Outil", name: "tool", widget: "string" } }
       - { label: "Image principale", name: "featured_image", widget: "image" }
       - { label: "Galerie d'images", name: "gallery", widget: "list", field: { label: "Image", name: "image", widget: "image" } }

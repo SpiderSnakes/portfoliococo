@@ -24,7 +24,7 @@ export interface Project {
   annonceur?: string
   contexte: 'Alternance' | 'École' | 'Projet personnel' | 'Client' | 'Autre'
   contexte_autre?: string // Obligatoire quand contexte = "Autre"
-  project_type: string
+  project_type: string | string[]
   tools: string[]
   featured_image: string
   gallery: { image: string }[]

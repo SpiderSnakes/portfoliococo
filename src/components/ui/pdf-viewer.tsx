@@ -28,10 +28,10 @@ export function PdfViewer({
     return (
       <Card className={cn("w-full", className)}>
         <CardContent className="p-6 text-center space-y-4">
-          <FileText className="h-12 w-12 text-muted-foreground mx-auto" />
+          <FileText className="h-12 w-12 text-gray-400 mx-auto" />
           <div>
-            <p className="text-sm text-muted-foreground mb-2">Impossible d&apos;afficher le PDF</p>
-            <p className="text-xs text-muted-foreground break-all">{pdfUrl}</p>
+            <p className="text-sm text-gray-300 mb-2">Impossible d&apos;afficher le PDF</p>
+            <p className="text-xs text-gray-400 break-all">{pdfUrl}</p>
           </div>
           <div className="flex gap-2 justify-center">
             {allowDownload && (
