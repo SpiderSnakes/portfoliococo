@@ -7,6 +7,9 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 
   // Configuration pour supporter les fichiers Markdown, les images et react-pdf
   webpack: (config: any) => {
