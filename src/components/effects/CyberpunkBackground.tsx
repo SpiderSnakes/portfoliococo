@@ -63,7 +63,7 @@ export function CyberpunkBackground({
       {/* Cursor Glow Effect */}
       {showCursor && (
         <CursorGlow 
-          className="fixed pointer-events-none z-50 rounded-full blur-3xl transition-all duration-300"
+          className="fixed pointer-events-none z-50 rounded-full blur-3xl"
           style={{ opacity: cursorOpacity }}
           size={384}
           colors={["#ff00ff", "#00ffff"]}

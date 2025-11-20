@@ -6,16 +6,41 @@ import { ArrowRight, Eye, ExternalLink } from "lucide-react"
 import { getFeaturedProjects, getPageData } from "@/lib/content"
 import { CyberpunkBackground, GlitchCard } from "@/components/effects"
 import { TypewriterText, NeonText } from "@/components/effects/AnimatedText"
-import "../styles/cyberpunk-effects.css"
 
-// Les types sont importés depuis @/lib/content
+// Helper function to process markdown-like content
+// This replaces the inline logic for better readability and separation of concerns
+function processContent(content: string): string {
+  if (!content) return ""
+  
+  return content
+    .split('\n\n')
+    .map(paragraph => {
+      const trimmed = paragraph.trim()
+      
+      // Section headers (lines starting with * but not **)
+      if (trimmed.startsWith('*') && !trimmed.startsWith('**')) {
+        const title = trimmed.replace(/^\*/, '').trim()
+        return `<h3 class="text-2xl font-bold text-pink-400 mb-4 neon-text-purple" style="text-shadow: 0 0 10px #ff00ff;">${title}</h3>`
+      }
+      
+      // Process bold (**text**) and italic (*text*)
+      const processedText = paragraph
+        .replace(/\*\*([^*]+)\*\*/g, '<strong class="text-cyan-400 font-bold" style="text-shadow: 0 0 5px #00ffff;">$1</strong>')
+        .replace(/\*([^*]+)\*/g, '<em class="text-pink-300 italic">$1</em>')
+      
+      // Wrap in <p> if it's not a header
+      return trimmed.startsWith('<h3') ? trimmed : `<p class="mb-6 text-gray-200">${processedText}</p>`
+    })
+    .join('')
+    .replace(/<p class="mb-6 text-gray-200"><\/p>/g, '') // Remove empty paragraphs
+}
 
 export default function Home() {
   // Données par défaut si le contenu n'existe pas encore
   const defaultData = {
     title: "Créatif Passionné",
     subtitle: "Graphiste Freelance spécialisé en Design Visuel",
-    description: "Je transforme vos idées en créations visuelles percutantes. Découvrez un portfolio riche en projets d&apos;identité visuelle, web design et print.",
+    description: "Je transforme vos idées en créations visuelles percutantes. Découvrez un portfolio riche en projets d'identité visuelle, web design et print.",
     cta_text: "Découvrir mes projets",
     body: ""
   }
@@ -93,20 +118,7 @@ export default function Home() {
                   <div 
                     className="font-cyberpunk text-gray-200 leading-relaxed text-lg"
                     dangerouslySetInnerHTML={{ 
-                      __html: pageData.body
-                        .split('\n\n')
-                        .map(paragraph => {
-                          if (paragraph.trim().startsWith('*') && !paragraph.trim().startsWith('**')) {
-                            // Section headers
-                            return `<h3 class="text-2xl font-bold text-pink-400 mb-4 neon-text-purple" style="text-shadow: 0 0 10px #ff00ff;">${paragraph.replace(/^\*/, '').trim()}</h3>`
-                          }
-                          return paragraph
-                            .replace(/\*\*([^*]+)\*\*/g, '<strong class="text-cyan-400 font-bold" style="text-shadow: 0 0 5px #00ffff;">$1</strong>')
-                            .replace(/\*([^*]+)\*/g, '<em class="text-pink-300 italic">$1</em>')
-                        })
-                        .map(content => content.trim().startsWith('<h3') ? content : `<p class="mb-6 text-gray-200">${content}</p>`)
-                        .join('')
-                        .replace(/<p class="mb-6 text-gray-200"><\/p>/g, '')
+                      __html: processContent(pageData.body)
                     }}
                   />
                 </div>
@@ -124,7 +136,7 @@ export default function Home() {
               <NeonText color="#00ffff">PROJETS.DIR</NeonText>
             </h2>
             <p className="text-lg text-gray-300 max-w-2xl mx-auto font-cyberpunk slide-up animation-delay-200">
-              Découvrez quelques-unes de mes réalisations récentes qui illustrent ma passion pour le design et l&apos;innovation visuelle.
+              Découvrez quelques-unes de mes réalisations récentes qui illustrent ma passion pour le design et l'innovation visuelle.
             </p>
           </div>
 
@@ -190,7 +202,7 @@ export default function Home() {
           ) : (
             <div className="text-center py-16">
               <p className="text-gray-300 mb-8 font-cyberpunk">
-                Aucun projet n&apos;est encore disponible. Les créations seront bientôt ajoutées !
+                Aucun projet n'est encore disponible. Les créations seront bientôt ajoutées !
               </p>
               <Button asChild className="hologram-btn border-cyan-400 text-cyan-400 hover:bg-cyan-400/10 font-cyberpunk" variant="outline">
                 <Link href="/admin">Ajouter des projets</Link>
@@ -217,7 +229,7 @@ export default function Home() {
             <NeonText color="#ff00ff">CONTACT.SYS</NeonText>
           </h2>
           <p className="text-lg text-gray-300 mb-8 font-cyberpunk slide-up animation-delay-200">
-            Collaborons ensemble pour créer quelque chose d&apos;exceptionnel qui marquera les esprits et atteindra vos objectifs.
+            Collaborons ensemble pour créer quelque chose d'exceptionnel qui marquera les esprits et atteindra vos objectifs.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center slide-up animation-delay-400">
             <Button asChild size="lg" className="text-lg px-8 hologram-btn bg-gradient-to-r from-cyan-400 to-pink-500 text-black font-cyberpunk font-bold pulse-glow">
